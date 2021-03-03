@@ -35,7 +35,12 @@ function App() {
 
   // Handle Computer Move
   useEffect(() => {
-    if(gameRuns && opponentIsComputer && currentPlayer === computerSymbol){
+    if(
+      !checkForWinner(fieldValues, getOtherPlayer(currentPlayer)) &&
+      gameRuns &&
+      opponentIsComputer &&
+      currentPlayer === computerSymbol
+    ){
       makeMove(calculateMove(fieldValues, computerStrength, computerSymbol));
       setCurrentPlayer(prevState => getOtherPlayer(prevState));
     }
